@@ -1,5 +1,10 @@
 //Ryan Emslie - JavaScript Full Stack
 //Techdegree - Unit 4 - Exceeds Expectation
+//This version of the program is set up to be a human verse computer player
+//One issue I ran into was that the computer 'plays' too quickly for the blue 'active' class to be visible
+//I did not use the minmax algorithm, instead I wanted to porgram with the knowledge I had
+//I designed this so it wasn't a 'perfect game' - meaning a tie everytime - the computer is beatable
+//Still feel like I am still not achieving "D.R.Y." programming but getting better
 
 
 function startGame(){
@@ -32,6 +37,7 @@ function startGame(){
         player1Moves[i] = 0;
         computerMoves[i] = 0;
     }
+//*********************EXTRA CREDIT************************    
     player1Name = $('#player1Input').val();
      //Tests if Player 1 name was entered
        if ( $('#player1Input').val().length < 1 ) {
@@ -68,7 +74,6 @@ function startGame(){
 //Click event to put circle or cross
     $("ul.boxes li").click(function(){
         $('#player1').addClass('active');
-        
         //Player 1 fills in the board square if it is not already selected
         if ( $(this).hasClass('box-filled-1') || $(this).hasClass('box-filled-2') ) {
             return;
@@ -87,21 +92,14 @@ function startGame(){
             endGame();
             return;
         }
-
-
-
         //Tests Player 1 move to see if it is a winning move
         testGameOver();
-        
         //Logic for Computer Move
         calcCompMov();    
-        
         //For testing - logs the spaces occupied
         console.log(`Player 1 moves ${player1Moves}`);
         console.log(`Computer moves ${computerMoves}`);
         $('#player1').addClass('active');
-        
-        
     });
 
 
@@ -196,10 +194,8 @@ function startGame(){
     
 //Function closes board and displays 'Winner' - called in click event
     const endGame = () => {
-        
         $('#board').hide();
         $('#finish').show().addClass('screen-win'); 
-        
         //If statement determining which winner/tie screen to display
         if ( $('#player1').hasClass('active') ) {
             $('#finish').addClass('screen-win-one');
@@ -212,7 +208,6 @@ function startGame(){
             $('.message').text("It's a Tie!");
         } 
         console.log(`This is the count at end: ${count}`)
-        
     };
 
 
